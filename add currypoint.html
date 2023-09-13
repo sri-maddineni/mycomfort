@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Docu</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Create Firestore Document</h1>
+    <form>
+      <label for="text">Enter Phone:</label>
+      <input type="text" id="phone" name="phone">
+      <br><br>
+      <label for="text">Enter fee:</label>
+      <input type="text" id="fee" name="fee" width="2000px">
+      <br><br>
+      <label for="text">Enter Name:</label>
+      <input type="text" id="Name" name="Name" width="2000px">
+      <br><br>
+      <label for="text">Enter loc:</label>
+      <input type="text" id="loc" name="loc" width="2000px">
+      <br><br>
+      <label for="text">Enter pic: </label>
+      <input type="text" id="pic" name="pic" width="2000px">
+      <br><br>
+      <label for="text">Enter rating: </label>
+      <input type="text" id="rating" name="rating" width="2000px">
+      <label for="text">Enter rating: </label>
+      <input type="text" id="rating" name="rating" width="2000px">
+      <br><br>
+     
+      <p>mess :  https://firebasestorage.googleapis.com/v0/b/bec-hostels-64d05.appspot.com/o/Images%2Flogos%2Fmess.png?alt=media&token=16bb1f5f-cbef-4563-9538-7c2a5a4ad0d4</p>
+      <br>
+      <p>cp :  https://firebasestorage.googleapis.com/v0/b/bec-hostels-64d05.appspot.com/o/Images%2Flogos%2Fcp.png?alt=media&token=97492807-daf3-46fa-b6c2-051c44b4492b</p>
+      <br>
+      
+      <button type="button" id="submit" name="submit">Submit</button>
+
+     
+    </form>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+        import { getFirestore, setDoc, addDoc , doc, collection} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js";
+
+
+       // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+
+
+       // import { initializeApp } from "firebase/app";
+       // import { getFirestore } from "firebase/firestore";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBSd0FFY4jYumI731SXaZ1RpAEXsrp6fog",
+          authDomain: "bec-hostels-64d05.firebaseapp.com",
+          databaseURL: "https://bec-hostels-64d05-default-rtdb.firebaseio.com",
+          projectId: "bec-hostels-64d05",
+          storageBucket: "bec-hostels-64d05.appspot.com",
+          messagingSenderId: "174951857966",
+          appId: "1:174951857966:web:abe5f329cb70d6c01ac4bf",
+          measurementId: "G-9J50LVPRKQ"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        const db = getFirestore(app);
+
+
+       // const analytics = getAnalytics(app);
+
+       submit.addEventListener('click',(e)=>{
+
+        
+
+      
+        var phone=document.getElementById("phone").value;
+
+        var Name=document.getElementById("Name").value;
+
+        var fee=document.getElementById("fee").value;
+       
+        var pic=document.getElementById("pic").value;
+
+        var loc=document.getElementById("loc").value;
+
+        var rating=document.getElementById("rating").value;
+
+        
+        
+
+          let path="/mess/";
+          addDoc(collection(db, path), {
+                        Messcontact:phone,
+                        Messfee:fee,
+                        Messname:Name,
+                        Messrating:rating,
+                        loc:loc,
+                        pic:pic,
+                      });
+          
+
+    
+
+    alert("Done!")
+ 
+       })
+
+       
+
+
+       
+      </script>
+
+
+
+
+</body>
+</html>
+
+
