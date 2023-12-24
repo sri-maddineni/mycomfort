@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Mess</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>Add a Mess</h1>
+    <form>
+        <label for="text">Enter title:</label>
+        <input type="text" id="title" name="title" />
+        <br /><br />
+        <label for="text">Enter loc:</label>
+        <input type="text" id="loc" name="loc" width="2000px" />
+        <br /><br />
+        <label for="text">Enter contact:</label>
+        <input type="text" id="contact" name="contact" width="2000px" />
+        <br /><br />
+        <label for="text">Enter des:</label>
+        <input type="text" id="des" name="des" width="2000px" />
+        <br /><br />
+        <label for="text">Enter image:</label>
+        <input type="text" id="img" name="img" width="2000px" />
+        <br /><br />
+        <label for="text">Enter address:</label>
+        <input type="text" id="adr" name="adr" width="2000px" />
+        <br /><br />
+        
+
+
+        <button type="button" id="submit" name="submit">Submit</button>
+
+        
+    </form>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+        import {
+            getFirestore,
+            setDoc,
+            addDoc,
+            doc,
+            collection,
+        } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js";
+
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js";
+
+        // import { initializeApp } from "firebase/app";
+        // import { getFirestore } from "firebase/firestore";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBSd0FFY4jYumI731SXaZ1RpAEXsrp6fog",
+            authDomain: "bec-hostels-64d05.firebaseapp.com",
+            databaseURL: "https://bec-hostels-64d05-default-rtdb.firebaseio.com",
+            projectId: "bec-hostels-64d05",
+            storageBucket: "bec-hostels-64d05.appspot.com",
+            messagingSenderId: "174951857966",
+            appId: "1:174951857966:web:abe5f329cb70d6c01ac4bf",
+            measurementId: "G-9J50LVPRKQ",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        const db = getFirestore(app);
+
+        // const analytics = getAnalytics(app);
+
+        submit.addEventListener("click", (e) => {
+
+
+            var title = document.getElementById("title").value;
+
+            var loc = document.getElementById("loc").value;
+
+            var contact = document.getElementById("contact").value;
+
+            var des = document.getElementById("des").value;
+
+            var img = document.getElementById("img").value;            
+
+            var adr = document.getElementById("adr").value;
+
+          
+
+
+            let path = `/becstuoweb/navigation/Food/BiryaniPoints/bir`;
+
+            addDoc(collection(db, path),
+                {
+                    
+                    des: des,
+                    title: title,
+                    loc: loc,
+                    contact: contact,
+                    img:img,
+                    adr:adr
+
+                });
+
+            alert("Done!");
+        });
+    </script>
+</body>
+
+</html>

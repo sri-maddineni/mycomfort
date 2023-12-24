@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Udates</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    
+    .card{
+      margin: 10px;
+      padding: 10px;
+      background-color: beige;
+    }
+  </style>
+</head>
+<body>
+  <div id="documents"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+
+    function  showMore(x) {
+    db.collection("/writes/contact/writesomething")
+      .doc(x)
+      .delete()
+      .then(() => {
+        // Document deleted successfully
+        console.log("Document successfully deleted!");
+        alert("deleted")
+        location.reload()
+        // Optionally, update the UI to remove the deleted document from the list
+        // You can remove the corresponding list item by accessing its parent node.
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  }
+
+    var firebaseConfig = {
+          apiKey: "AIzaSyBSd0FFY4jYumI731SXaZ1RpAEXsrp6fog",
+          authDomain: "bec-hostels-64d05.firebaseapp.com",
+          databaseURL: "https://bec-hostels-64d05-default-rtdb.firebaseio.com",
+          projectId: "bec-hostels-64d05",
+          storageBucket: "bec-hostels-64d05.appspot.com",
+          messagingSenderId: "174951857966",
+          appId: "1:174951857966:web:abe5f329cb70d6c01ac4bf",
+          measurementId: "G-9J50LVPRKQ"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Get the Firestore database instance
+    var db = firebase.firestore();
+
+    
+
+    // Retrieve documents from Firestore
+    db.collection("updates").get().then(function(querySnapshot) {
+      var documentsDiv = document.getElementById("documents");
+
+      querySnapshot.forEach(function(doc) {
+        var documentData = doc.data();
+
+        var d1=document.createElement("div");
+        d1.className="card";
+
+        var d2=document.createElement("div");
+        d2.className="row no-gutters";
+
+        var d3=document.createElement("div");
+        d3.className="col-md-4";
+
+        var d4=document.createElement("div");
+        d4.className="col-md-8";
+
+        var d5=document.createElement("div");
+        d5.className="card-body";
+
+        var title=document.createElement("h5");
+        title.className="card-title";
+        title.textContent=documentData.title;
+
+        var info1=document.createElement("p");
+        info1.textContent=documentData.info1;
+        info1.className="card-text";
+
+        var info2=document.createElement("p");
+        info2.textContent=documentData.info2;
+        info2.className="card-text";
+
+
+        var description=document.createElement("p");
+        description.textContent=documentData.description;
+        description.className="card-text";
+
+        var del=document.createElement("button");
+        del.textContent="Delete";
+        
+        
+        
+        del.addEventListener('click', function(){
+          
+          showMore(documentData.timestamp)});
+
+        d2.appendChild(d3);
+        
+
+        d5.appendChild(title);
+        d5.appendChild(description);
+        d5.appendChild(info1);
+        d5.appendChild(info2)
+
+        d4.appendChild(d5);
+        d2.appendChild(d4);
+
+        d1.appendChild(d2);
+
+
+
+
+
+
+
+
+
+        
+        
+        documentsDiv.appendChild(d1);
+      });
+    });
+  </script>
+</body>
+</html>
